@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema de Gestión</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- FILA SUPERIOR: Información Adicional + Contacto -->
+      <div class="top-row">
+        <!-- Información Adicional -->
+        <div class="panel info-adicional">
+          <div class="panel-header">Información Adicional</div>
+          <div class="panel-body">
+            <div class="field-row">
+              <label>Clasificación</label>
+              <select id="clasificacion">
+                <option value=""></option>
+                <option value="Tipo 1">Tipo 1</option>
+                <option value="Tipo 2">Tipo 2</option>
+              </select>
+              <label>Canal de Salida</label>
+              <select id="canalSalida">
+                <option value=""></option>
+                <option value="Email">Email</option>
+                <option value="Correo">Correo</option>
+              </select>
+            </div>
+            <div class="field-row">
+              <label>Canal Entrada</label>
+              <select id="canalEntrada">
+                <option value=""></option>
+                <option value="Web">Web</option>
+                <option value="Teléfono">Teléfono</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contacto -->
+        <div class="panel contacto">
+          <div class="panel-header">
+            <span>Contacto</span>
+            <button class="btn-nuevo" id="btnNuevo">Nuevo</button>
+          </div>
+          <div class="panel-body">
+            <div class="field-row">
+              <label>Nombre</label>
+              <input type="text" id="nombre" />
+              <button class="btn-icon">&#128269;</button>
+            </div>
+            <div class="field-row">
+              <label>Teléfonos</label>
+              <input type="text" id="telefono1" />
+              <button class="btn-icon">&#128222;</button>
+              <input type="text" id="telefono2" />
+              <button class="btn-icon">&#128222;</button>
+            </div>
+            <div class="field-row">
+              <label>NIF</label>
+              <input type="text" id="nif" />
+            </div>
+            <div class="field-row">
+              <label>Dirección</label>
+              <input type="text" id="direccion" />
+            </div>
+            <div class="field-row">
+              <label>CP/Población</label>
+              <input type="text" id="cp" />
+              <input type="text" id="poblacion" />
+            </div>
+            <div class="field-row">
+              <label>Prov/País</label>
+              <select id="provincia">
+                <option value=""></option>
+                <option value="Madrid">Madrid</option>
+                <option value="Barcelona">Barcelona</option>
+              </select>
+              <input type="text" id="pais" />
+            </div>
+            <div class="field-row">
+              <label>Correo</label>
+              <input type="text" id="correo" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FILA INFERIOR: Detalle -->
+      <div class="panel detalle">
+        <div class="panel-header">Detalle</div>
+        <div class="panel-body detalle-body">
+          <!-- Columna izquierda -->
+          <div class="detalle-left">
+            <div class="field-row">
+              <label>Asunto</label>
+              <input type="text" id="asunto" class="wide" />
+            </div>
+            <div class="field-row">
+              <label>Motivo BDE</label>
+              <select id="motivoBDE" class="wide">
+                <option value=""></option>
+                <option value="Motivo 1">Motivo 1</option>
+                <option value="Motivo 2">Motivo 2</option>
+              </select>
+            </div>
+            <div class="field-row">
+              <label>Tipología</label>
+              <select id="tipologia" class="wide">
+                <option value=""></option>
+                <option value="Tipo A">Tipo A</option>
+                <option value="Tipo B">Tipo B</option>
+              </select>
+            </div>
+            <div class="field-row">
+              <label>Motivo</label>
+              <select id="motivo" class="wide">
+                <option value=""></option>
+                <option value="Motivo A">Motivo A</option>
+                <option value="Motivo B">Motivo B</option>
+              </select>
+            </div>
+            <div class="field-row">
+              <label>Organismo</label>
+              <select id="organismo">
+                <option value=""></option>
+                <option value="Org 1">Org 1</option>
+                <option value="Org 2">Org 2</option>
+              </select>
+            </div>
+          </div>
+          <!-- Columna derecha -->
+          <div class="detalle-right">
+            <div class="field-row desc-header">
+              <label>Descripción</label>
+              <label class="urgente-label"
+                ><input type="checkbox" id="urgente" /> Urgente</label
+              >
+            </div>
+            <textarea id="descripcion" class="desc-textarea"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botones de acción -->
+      <div class="action-row">
+        <input
+          type="file"
+          id="documentos"
+          multiple
+          accept="image/*,.pdf,.doc,.docx"
+          hidden
+        />
+        <div class="file-list" id="fileList"></div>
+        <div class="action-buttons">
+          <button type="button" class="btn-adjuntar" id="btnAdjuntar">
+            Adjuntar Documentos
+          </button>
+          <button type="button" class="btn-alta" id="btnAlta">
+            Realizar Alta
+          </button>
+        </div>
+      </div>
+
+      <!-- Registro de Altas -->
+      <div class="panel registry-panel">
+        <div class="panel-header">Registro de Altas</div>
+        <div class="panel-body">
+          <div class="registry-list" id="registryList"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Detalles del Registro</h2>
+        <div id="modalBody"></div>
+      </div>
+    </div>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
